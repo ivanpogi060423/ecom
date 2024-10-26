@@ -4,6 +4,7 @@
     <title>Login</title>
 </head>
 <body>
+    <h1>Log In</h1>
     <form action="{{ route('login') }}" method="POST">
         @csrf
         <div>

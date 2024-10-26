@@ -11,6 +11,7 @@ class Product extends Model
 
     protected $table = 'product';
 
+    // for user to fill
     protected $fillable = [
         'barcode',
         'category',

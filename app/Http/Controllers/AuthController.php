@@ -7,25 +7,27 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    // Display the login page
     public function showLoginForm()
     {
         return view('auth.login');
     }
 
-    // \App\Models\User::create(['name' => 'Test User', 'email' => 'test@example.com','password' => bcrypt('password123')]);
+    // Handle the authentication of a user
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('product');
+            return redirect()->route('products.view'); // Redirect to the view route
         }
 
         return back()->withErrors([
-            'email' => 'Email does not exist.',
+            'email' => 'Incorrect email or password.',
         ]);
     }
 
+    // When the user logout, it redirect them to the login page
     public function logout(Request $request)
     {
         Auth::logout();
